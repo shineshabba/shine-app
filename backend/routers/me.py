@@ -7,6 +7,8 @@ from services.db import get_user, is_access_active
 
 router = APIRouter()
 
+DEVICE_LIMIT_DEFAULT = 5
+
 
 @router.get("/me", response_model=UserProfile)
 @limiter.limit("60/minute")
@@ -28,5 +30,5 @@ async def get_me(
         name=user.get("tg_full_name") or user.get("first_name") or "User",
         subscription_active=is_access_active(user),
         subscription_end=user["access_until"],
-        device_limit=5,
+        device_limit=user.get("device_limit", DEVICE_LIMIT_DEFAULT),
     )
