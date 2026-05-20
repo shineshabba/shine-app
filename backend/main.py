@@ -37,7 +37,7 @@ app.add_middleware(SlowAPIMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://localhost:3000"],
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origin_regex=r"^https://[a-zA-Z0-9][a-zA-Z0-9\-]*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["GET", "OPTIONS"],
     allow_headers=["X-Telegram-Init-Data", "Content-Type"],
