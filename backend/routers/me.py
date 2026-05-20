@@ -17,7 +17,7 @@ async def get_me(
     tg_user_id = user_data["id"]
     request.state.tg_user_id = tg_user_id
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     user = await loop.run_in_executor(None, get_user, tg_user_id)
 
     if user is None:
