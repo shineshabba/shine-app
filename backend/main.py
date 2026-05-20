@@ -13,14 +13,12 @@ Security:
 """
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
-from auth import get_user_id_for_limiter
-
-# Rate limiter by tg_user_id (per API-07, T-01-05)
-limiter = Limiter(key_func=get_user_id_for_limiter)
+from limiter import limiter
+from routers import health, me, config
 
 app = FastAPI(
     title="Shine App API",
@@ -45,14 +43,6 @@ app.add_middleware(
     allow_headers=["X-Telegram-Init-Data", "Content-Type"],
 )
 
-# Routers will be connected in Plan 02 after router files are created:
-# from routers import health, me, config
-# app.include_router(health.router, prefix="/api")
-# app.include_router(me.router, prefix="/api")
-# app.include_router(config.router, prefix="/api")
-
-
-@app.get("/api/health")
-async def health_check():
-    """Health endpoint for load balancer / uptime monitoring. No auth required."""
-    return {"status": "ok"}
+app.include_router(health.router, prefix="/api")
+app.include_router(me.router, prefix="/api")
+app.include_router(config.router, prefix="/api")
