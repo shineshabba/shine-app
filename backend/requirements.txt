@@ -5,3 +5,4 @@ python-dotenv==1.2.2
 httpx==0.28.1
 requests==2.32.3
 pytest==8.3.5
+aiohttp>=3.9
