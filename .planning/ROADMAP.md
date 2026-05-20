@@ -28,7 +28,14 @@
   4. Запрос с подделанным или истёкшим (>24ч) initData отклоняется с 401; `tg_user_id` берётся только из валидированного initData
   5. Backend работает как systemd-сервис на порту 8000, CORS разрешает только Vercel-домен, rate-limit ~60 req/min per user, `/docs` доступен
 
-**Plans**: TBD
+**Plans:** 5 планов
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold: services copy, auth middleware (HMAC), models, main.py с CORS + rate limiting
+- [ ] 01-02-PLAN.md — API роутеры: /api/health, /api/me, /api/config + подключение в main.py
+- [ ] 01-03-PLAN.md — systemd unit file + .env + автозапуск сервиса
+- [ ] 01-04-PLAN.md — nginx vhost api.shineee.space + Let's Encrypt SSL + DNS checkpoint
+- [ ] 01-05-PLAN.md — Финальная верификация: curl-тесты, VERIFICATION.md, human checkpoint
 
 ### Phase 2: Frontend Dashboard (React Mini App)
 
@@ -70,7 +77,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Backend Foundation on api.shineee.space | 0/0 | Not started | - |
+| 1. Backend Foundation on api.shineee.space | 0/5 | Not started | - |
 | 2. Frontend Dashboard (React Mini App) | 0/0 | Not started | - |
 | 3. Deployment + Bot Integration | 0/0 | Not started | - |
 
