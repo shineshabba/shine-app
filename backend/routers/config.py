@@ -28,7 +28,7 @@ async def get_config(
     if not is_access_active(user):
         raise HTTPException(status_code=403, detail="Subscription not active")
 
-    client_id = user["client_id"]
+    client_id = user.get("client_id")
     if not client_id:
         raise HTTPException(status_code=404, detail="VPN config not found")
 
