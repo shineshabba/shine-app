@@ -9,7 +9,7 @@ import asyncio
 from fastapi import APIRouter, Depends, HTTPException, Request
 from auth import validate_init_data
 from models import UserProfile
-from main import limiter
+from limiter import limiter
 from services.db import get_user_by_tg_id
 
 router = APIRouter()
