@@ -31,11 +31,11 @@
 **Plans:** 5 планов
 
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold: services copy, auth middleware (HMAC), models, main.py с CORS + rate limiting
-- [ ] 01-02-PLAN.md — API роутеры: /api/health, /api/me, /api/config + подключение в main.py
-- [ ] 01-03-PLAN.md — systemd unit file + .env + автозапуск сервиса
-- [ ] 01-04-PLAN.md — nginx vhost api.shineee.space + Let's Encrypt SSL + DNS checkpoint
-- [ ] 01-05-PLAN.md — Финальная верификация: curl-тесты, VERIFICATION.md, human checkpoint
+- [x] 01-01-PLAN.md — Project scaffold: services copy, auth middleware (HMAC), models, main.py с CORS + rate limiting
+- [x] 01-02-PLAN.md — API роутеры: /api/health, /api/me, /api/config + подключение в main.py
+- [x] 01-03-PLAN.md — systemd unit file + .env + автозапуск сервиса
+- [x] 01-04-PLAN.md — nginx vhost api.shineee.space + Let's Encrypt SSL + DNS checkpoint
+- [x] 01-05-PLAN.md — Финальная верификация: curl-тесты, VERIFICATION.md, human checkpoint
 
 ### Phase 2: Frontend Dashboard (React Mini App)
 
