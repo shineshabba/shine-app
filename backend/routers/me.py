@@ -25,7 +25,7 @@ async def get_me(
 
     return UserProfile(
         tg_user_id=tg_user_id,
-        name=user["tg_full_name"] or user["first_name"] or "User",
+        name=user.get("tg_full_name") or user.get("first_name") or "User",
         subscription_active=is_access_active(user),
         subscription_end=user["access_until"],
         device_limit=5,
