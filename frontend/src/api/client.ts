@@ -1,4 +1,4 @@
-import type { UserProfile, ConfigResponse } from '../types/api'
+import type { UserProfile, ConfigResponse, AdminUser } from '../types/api'
 import { ApiError, type ApiErrorCode } from '../types/api'
 
 const API_BASE = (import.meta.env.VITE_API_URL ?? '').trim()
@@ -12,15 +12,17 @@ function getInitData(): string {
   return window.Telegram?.WebApp?.initData ?? ''
 }
 
-async function apiFetch<T>(path: string): Promise<T> {
+async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const initData = getInitData()
 
   let response: Response
   try {
     response = await fetch(`${API_BASE}${path}`, {
+      ...options,
       headers: {
         'X-Telegram-Init-Data': initData,
         'Content-Type': 'application/json',
+        ...options?.headers,
       },
     })
   } catch {
@@ -63,5 +65,23 @@ export const apiClient = {
    */
   getConfig(): Promise<ConfigResponse> {
     return apiFetch<ConfigResponse>('/api/config')
+  },
+
+  adminListUsers(): Promise<AdminUser[]> {
+    return apiFetch<AdminUser[]>('/api/admin/users')
+  },
+
+  adminGrant(userId: number, days: number): Promise<{ status: string; until: string; forever: boolean }> {
+    return apiFetch('/api/admin/grant', {
+      method: 'POST',
+      body: JSON.stringify({ user_id: userId, days }),
+    })
+  },
+
+  adminRevoke(userId: number): Promise<{ status: string }> {
+    return apiFetch('/api/admin/revoke', {
+      method: 'POST',
+      body: JSON.stringify({ user_id: userId }),
+    })
   },
 }

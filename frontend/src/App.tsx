@@ -12,6 +12,7 @@ import { PaymentButton } from './components/PaymentButton'
 import { SupportButton } from './components/SupportButton'
 import { QrModal } from './components/QrModal'
 import { SupportSheet } from './components/SupportSheet'
+import { AdminPanel } from './components/AdminPanel'
 
 type AppState =
   | { status: 'loading' }
@@ -23,6 +24,7 @@ export default function App() {
   const [appState, setAppState] = useState<AppState>({ status: 'loading' })
   const [showQr, setShowQr] = useState(false)
   const [showSupport, setShowSupport] = useState(false)
+  const [showAdmin, setShowAdmin] = useState(false)
 
   const loadData = useCallback(async () => {
     setAppState({ status: 'loading' })
@@ -75,7 +77,7 @@ export default function App() {
 
   return (
     <div className="min-h-dvh bg-[var(--bg)] flex flex-col">
-      <Header name={profile.name} />
+      <Header name={profile.name} isAdmin={profile.is_admin} onAdminOpen={() => setShowAdmin(true)} />
 
       <main className="flex-1 flex flex-col gap-6 py-6">
         <SubscriptionBlock profile={profile} />
@@ -109,6 +111,8 @@ export default function App() {
         isOpen={showSupport}
         onClose={() => setShowSupport(false)}
       />
+
+      <AdminPanel isOpen={showAdmin} onClose={() => setShowAdmin(false)} />
     </div>
   )
 }
