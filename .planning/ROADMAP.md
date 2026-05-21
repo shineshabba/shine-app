@@ -28,14 +28,7 @@
   4. Запрос с подделанным или истёкшим (>24ч) initData отклоняется с 401; `tg_user_id` берётся только из валидированного initData
   5. Backend работает как systemd-сервис на порту 8000, CORS разрешает только Vercel-домен, rate-limit ~60 req/min per user, `/docs` доступен
 
-**Plans:** 5 планов
-
-Plans:
-- [x] 01-01-PLAN.md — Project scaffold: services copy, auth middleware (HMAC), models, main.py с CORS + rate limiting
-- [x] 01-02-PLAN.md — API роутеры: /api/health, /api/me, /api/config + подключение в main.py
-- [x] 01-03-PLAN.md — systemd unit file + .env + автозапуск сервиса
-- [x] 01-04-PLAN.md — nginx vhost api.shineee.space + Let's Encrypt SSL + DNS checkpoint
-- [x] 01-05-PLAN.md — Финальная верификация: curl-тесты, VERIFICATION.md, human checkpoint
+**Plans**: TBD
 
 ### Phase 2: Frontend Dashboard (React Mini App)
 
@@ -53,14 +46,8 @@ Plans:
   5. Кнопка «Поддержка» открывает список инструкций (iOS/Android/Windows/Mac) и кнопку «Написать админу» (deep-link в Telegram)
   6. Bundle gzipped < 300KB, open time на 4G < 2s; каждый API-запрос содержит header `X-Telegram-Init-Data`
 
-**Plans:** 5 планов
-
-Plans:
-- [ ] 02-01-PLAN.md — Vite + React 19 + TypeScript + Tailwind CSS 4 + @telegram-apps/sdk-react scaffold
-- [ ] 02-02-PLAN.md — API-клиент (X-Telegram-Init-Data), TypeScript типы, экраны состояний (Loading, Error, Unregistered, ErrorBoundary)
-- [ ] 02-03-PLAN.md — Главный дашборд: Header, SubscriptionBlock, ConfigBlock, PaymentButton, SupportButton, App.tsx orchestration
-- [ ] 02-04-PLAN.md — Оверлеи: QR Modal (full-screen, qrcode.react) + Support Bottom Sheet (accordion 4 платформы)
-- [ ] 02-05-PLAN.md — Финальная верификация: automated checks, human checkpoint, VERIFICATION.md
+**Plans**: TBD
+**UI hint**: yes
 
 ### Phase 3: Deployment + Bot Integration
 
@@ -83,8 +70,8 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Backend Foundation on api.shineee.space | 0/5 | Not started | - |
-| 2. Frontend Dashboard (React Mini App) | 0/5 | Not started | - |
+| 1. Backend Foundation on api.shineee.space | 0/0 | Not started | - |
+| 2. Frontend Dashboard (React Mini App) | 0/0 | Not started | - |
 | 3. Deployment + Bot Integration | 0/0 | Not started | - |
 
 ## Deferred to v2
