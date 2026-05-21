@@ -10,6 +10,8 @@ import { SubscriptionBlock } from './components/SubscriptionBlock'
 import { ConfigBlock } from './components/ConfigBlock'
 import { PaymentButton } from './components/PaymentButton'
 import { SupportButton } from './components/SupportButton'
+import { QrModal } from './components/QrModal'
+import { SupportSheet } from './components/SupportSheet'
 
 type AppState =
   | { status: 'loading' }
@@ -21,7 +23,6 @@ export default function App() {
   const [appState, setAppState] = useState<AppState>({ status: 'loading' })
   const [showQr, setShowQr] = useState(false)
   const [showSupport, setShowSupport] = useState(false)
-  void showQr; void showSupport
 
   const loadData = useCallback(async () => {
     setAppState({ status: 'loading' })
@@ -94,8 +95,20 @@ export default function App() {
         <SupportButton onOpen={() => setShowSupport(true)} />
       </main>
 
-      {/* QR Modal and Support Bottom Sheet implemented in Plan 04 */}
-      {/* showQr={showQr} showSupport={showSupport} wired up after Plan 04 */}
+      {/* QR Modal (D-02, D-09) */}
+      {appState.status === 'ready' && appState.config && (
+        <QrModal
+          vlessUrl={appState.config.vless_url}
+          isOpen={showQr}
+          onClose={() => setShowQr(false)}
+        />
+      )}
+
+      {/* Support Bottom Sheet (D-03) */}
+      <SupportSheet
+        isOpen={showSupport}
+        onClose={() => setShowSupport(false)}
+      />
     </div>
   )
 }
