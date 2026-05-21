@@ -5,6 +5,11 @@ backend/.env
 backend/venv/
 backend/.venv/
 
+# Frontend build output and dependencies
+frontend/dist/
+frontend/node_modules/
+frontend/package-lock.json
+
 # OS artifacts
 .DS_Store
 Thumbs.db
