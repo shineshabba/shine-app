@@ -18,7 +18,7 @@ export function PaymentButton({ profile }: PaymentButtonProps) {
     <div className="mx-4">
       <button
         onClick={handleClick}
-        className="w-full h-12 rounded-xl bg-[var(--tg-theme-button-color)] text-[var(--tg-theme-button-text-color)] text-base font-semibold"
+        className="w-full h-11 rounded-md bg-[var(--btn-bg)] text-[var(--btn-text)] text-[14px] font-semibold tracking-tight"
         aria-label={label}
       >
         {label}

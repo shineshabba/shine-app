@@ -14,35 +14,32 @@ export function SubscriptionBlock({ profile }: SubscriptionBlockProps) {
 
   return (
     <div
-      className="mx-4 rounded-2xl p-4 bg-[var(--tg-theme-bg-color)]"
-      style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}
+      className="mx-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
       role="region"
       aria-label="Блок подписки"
     >
-      <h2 className="text-xl font-semibold text-[var(--tg-theme-text-color)] mb-3">
+      <p className="text-[11px] uppercase tracking-widest text-[var(--muted)] mb-3 font-medium">
         Подписка
-      </h2>
+      </p>
 
-      {subscription_active ? (
-        <p
-          className="text-base"
-          style={{ color: '#34C759' }}
-          aria-label={`Подписка активна${subscription_end ? ` до ${formatDate(subscription_end)}` : ''}`}
+      <div className="flex items-center gap-2 mb-2">
+        <span
+          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+          style={{ backgroundColor: subscription_active ? 'var(--positive)' : 'var(--faint)' }}
+          aria-hidden="true"
+        />
+        <span
+          className="text-[15px] font-medium"
+          style={{ color: subscription_active ? 'var(--positive)' : 'var(--muted)' }}
         >
-          ✅ Активна{subscription_end ? ` до ${formatDate(subscription_end)}` : ''}
-        </p>
-      ) : (
-        <p
-          className="text-base"
-          style={{ color: 'var(--tg-theme-destructive-text-color, #FF3B30)' }}
-          aria-label="Подписка не активна"
-        >
-          ❌ Не активна
-        </p>
-      )}
+          {subscription_active
+            ? `Активна${subscription_end ? ` · до ${formatDate(subscription_end)}` : ''}`
+            : 'Не активна'}
+        </span>
+      </div>
 
-      <p className="text-sm text-[var(--tg-theme-hint-color)] mt-2">
-        Лимит: {device_limit} {device_limit === 1 ? 'устройство' : 'устройств'}
+      <p className="text-[13px] text-[var(--muted)] pl-[14px]">
+        {device_limit} {device_limit === 1 ? 'устройство' : 'устройств'}
       </p>
     </div>
   )

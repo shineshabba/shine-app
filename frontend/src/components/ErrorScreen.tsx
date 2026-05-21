@@ -1,29 +1,25 @@
-import { WifiOff } from 'lucide-react'
-
 interface ErrorScreenProps {
   onRetry: () => void
   message?: string
 }
 
-/**
- * Экран ошибки — сетевые ошибки и 5xx.
- * onRetry — callback для повторного запроса (FE-08, D-17).
- */
 export function ErrorScreen({ onRetry, message }: ErrorScreenProps) {
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center gap-4 px-4 bg-[var(--tg-theme-secondary-bg-color)]">
-      <WifiOff size={48} className="text-[var(--tg-theme-hint-color)]" aria-hidden="true" />
+    <div className="min-h-dvh flex flex-col items-center justify-center gap-5 px-6 bg-[var(--bg)]">
+      <div className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center">
+        <span className="text-[var(--muted)] text-lg leading-none">!</span>
+      </div>
       <div className="text-center space-y-2">
-        <h1 className="text-xl font-semibold text-[var(--tg-theme-text-color)]">
+        <h1 className="text-[15px] font-medium text-[var(--text)]">
           Не удалось загрузить данные
         </h1>
-        <p className="text-base text-[var(--tg-theme-hint-color)]">
+        <p className="text-[13px] text-[var(--muted)]">
           {message ?? 'Проверьте соединение и попробуйте снова'}
         </p>
       </div>
       <button
         onClick={onRetry}
-        className="mt-2 h-12 px-8 rounded-xl bg-[var(--tg-theme-button-color)] text-[var(--tg-theme-button-text-color)] text-base font-semibold"
+        className="mt-1 h-10 px-8 rounded-md bg-[var(--btn-bg)] text-[var(--btn-text)] text-[13px] font-medium"
         aria-label="Повторить загрузку"
       >
         Повторить

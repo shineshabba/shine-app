@@ -1,4 +1,4 @@
-import { Settings2 } from 'lucide-react'
+import { SlidersHorizontal } from 'lucide-react'
 
 interface HeaderProps {
   name: string
@@ -6,21 +6,11 @@ interface HeaderProps {
 
 export function Header({ name }: HeaderProps) {
   return (
-    <header
-      className="sticky top-0 z-10 flex items-center justify-between h-14 px-4 bg-[var(--tg-theme-bg-color)]"
-      style={{ borderBottom: '1px solid color-mix(in srgb, var(--tg-theme-hint-color) 20%, transparent)' }}
-    >
-      <span
-        className="text-xl font-semibold text-[var(--tg-theme-text-color)] truncate max-w-[75%]"
-        aria-label={`Пользователь: ${name}`}
-      >
+    <header className="sticky top-0 z-10 flex items-center justify-between h-14 px-5 bg-[var(--bg)] border-b border-[var(--border)]">
+      <span className="text-[15px] font-medium text-[var(--text)] tracking-tight truncate max-w-[75%]">
         {name}
       </span>
-      <Settings2
-        size={24}
-        className="text-[var(--tg-theme-hint-color)] flex-shrink-0"
-        aria-hidden="true"
-      />
+      <SlidersHorizontal size={17} className="text-[var(--faint)] flex-shrink-0" aria-hidden="true" />
     </header>
   )
 }

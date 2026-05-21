@@ -9,11 +9,11 @@ export function SupportButton({ onOpen }: SupportButtonProps) {
     <div className="mx-4 flex justify-center">
       <button
         onClick={onOpen}
-        className="flex items-center gap-2 min-h-[44px] px-4 text-base text-[var(--tg-theme-link-color)]"
+        className="flex items-center gap-2 min-h-[44px] px-4 text-[13px] text-[var(--muted)]"
         style={{ background: 'none' }}
         aria-label="Открыть поддержку"
       >
-        <Headphones size={18} aria-hidden="true" />
+        <Headphones size={15} aria-hidden="true" />
         Поддержка
       </button>
     </div>

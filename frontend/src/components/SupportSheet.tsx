@@ -18,25 +18,25 @@ interface AccordionItem {
 const SUPPORT_ITEMS: AccordionItem[] = [
   {
     id: 'ios',
-    icon: <Smartphone size={18} aria-hidden="true" />,
+    icon: <Smartphone size={16} aria-hidden="true" />,
     title: 'iPhone / iPad',
     content: 'Скопируй конфигурацию → открой Streisand или Shadowrocket → нажми + → вставь ссылку → подключись',
   },
   {
     id: 'android',
-    icon: <Tablet size={18} aria-hidden="true" />,
+    icon: <Tablet size={16} aria-hidden="true" />,
     title: 'Android',
     content: 'Скопируй конфигурацию → открой v2rayNG или Hiddify → нажми + → вставь ссылку → подключись',
   },
   {
     id: 'windows',
-    icon: <Monitor size={18} aria-hidden="true" />,
+    icon: <Monitor size={16} aria-hidden="true" />,
     title: 'Windows',
     content: 'Скопируй конфигурацию → открой Hiddify или v2rayN → добавь сервер из буфера обмена → подключись',
   },
   {
     id: 'mac',
-    icon: <Laptop size={18} aria-hidden="true" />,
+    icon: <Laptop size={16} aria-hidden="true" />,
     title: 'macOS',
     content: 'Скопируй конфигурацию → открой Hiddify или FoXray → добавь сервер из буфера обмена → подключись',
   },
@@ -45,45 +45,28 @@ const SUPPORT_ITEMS: AccordionItem[] = [
 export function SupportSheet({ isOpen, onClose }: SupportSheetProps) {
   const [openItem, setOpenItem] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (!isOpen) setOpenItem(null)
-  }, [isOpen])
+  useEffect(() => { if (!isOpen) setOpenItem(null) }, [isOpen])
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
   useEffect(() => {
     if (!isOpen) return
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
   }, [isOpen, onClose])
 
-  const handleAdminClick = () => {
-    window.Telegram?.WebApp?.openTelegramLink(ADMIN_URL)
-  }
-
-  const toggleItem = (id: string) => {
-    setOpenItem(prev => prev === id ? null : id)
-  }
-
   return (
     <>
       <div
-        className="fixed inset-0 z-40"
+        className="fixed inset-0 z-40 bg-black"
         style={{
-          backgroundColor: 'rgba(0,0,0,0.4)',
-          opacity: isOpen ? 1 : 0,
+          opacity: isOpen ? 0.7 : 0,
           pointerEvents: isOpen ? 'auto' : 'none',
-          transition: 'opacity 300ms ease-out',
+          transition: 'opacity 250ms ease',
         }}
         onClick={onClose}
         aria-hidden="true"
@@ -93,53 +76,50 @@ export function SupportSheet({ isOpen, onClose }: SupportSheetProps) {
         role="dialog"
         aria-label="Поддержка"
         aria-modal="true"
-        className="fixed bottom-0 left-0 right-0 z-50 flex flex-col rounded-t-[20px] bg-[var(--tg-theme-bg-color)]"
+        className="fixed bottom-0 left-0 right-0 z-50 flex flex-col rounded-t-xl border-t border-[var(--border)] bg-[var(--surface)]"
         style={{
           maxHeight: '80vh',
           transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-          transition: 'transform 300ms ease-out',
+          transition: 'transform 280ms cubic-bezier(0.32,0.72,0,1)',
         }}
       >
         <div className="flex justify-center pt-3 pb-1">
-          <div
-            className="w-9 h-1 rounded-full"
-            style={{ backgroundColor: 'color-mix(in srgb, var(--tg-theme-hint-color) 40%, transparent)' }}
-            aria-hidden="true"
-          />
+          <div className="w-8 h-[3px] rounded-full bg-[var(--faint)]" aria-hidden="true" />
         </div>
 
-        <div className="flex items-center justify-between px-4 py-3">
-          <span className="text-xl font-semibold text-[var(--tg-theme-text-color)]">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-[var(--border)]">
+          <span className="text-[11px] uppercase tracking-widest text-[var(--muted)] font-medium">
             Поддержка
           </span>
           <button
             onClick={onClose}
-            className="flex items-center justify-center w-11 h-11 text-[var(--tg-theme-hint-color)]"
+            className="flex items-center justify-center w-8 h-8 rounded-full border border-[var(--border)] text-[var(--muted)]"
             aria-label="Закрыть поддержку"
             style={{ background: 'none' }}
           >
-            <X size={24} />
+            <X size={14} />
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 px-4 pb-6">
-          <div className="space-y-1">
-            {SUPPORT_ITEMS.map((item) => {
+        <div className="overflow-y-auto flex-1 px-4 py-3 pb-8">
+          <div>
+            {SUPPORT_ITEMS.map((item, i) => {
               const isExpanded = openItem === item.id
+              const isLast = i === SUPPORT_ITEMS.length - 1
               return (
-                <div key={item.id} className="rounded-xl overflow-hidden">
+                <div key={item.id} className={!isLast ? 'border-b border-[var(--border)]' : ''}>
                   <button
-                    onClick={() => toggleItem(item.id)}
-                    className="w-full flex items-center gap-3 min-h-[44px] px-4 py-3 text-left text-base font-semibold text-[var(--tg-theme-text-color)]"
+                    onClick={() => setOpenItem(prev => prev === item.id ? null : item.id)}
+                    className="w-full flex items-center gap-3 min-h-[44px] py-3 text-left text-[14px] font-medium text-[var(--text)]"
                     style={{ background: 'none' }}
                     aria-expanded={isExpanded}
                     aria-controls={`accordion-${item.id}`}
                   >
-                    <span className="text-[var(--tg-theme-hint-color)]">{item.icon}</span>
+                    <span className="text-[var(--muted)]">{item.icon}</span>
                     <span className="flex-1">{item.title}</span>
                     {isExpanded
-                      ? <ChevronDown size={18} className="text-[var(--tg-theme-hint-color)]" aria-hidden="true" />
-                      : <ChevronRight size={18} className="text-[var(--tg-theme-hint-color)]" aria-hidden="true" />
+                      ? <ChevronDown size={15} className="text-[var(--muted)]" aria-hidden="true" />
+                      : <ChevronRight size={15} className="text-[var(--muted)]" aria-hidden="true" />
                     }
                   </button>
 
@@ -148,10 +128,10 @@ export function SupportSheet({ isOpen, onClose }: SupportSheetProps) {
                     style={{
                       overflow: 'hidden',
                       maxHeight: isExpanded ? '200px' : '0',
-                      transition: 'max-height 200ms ease-out',
+                      transition: 'max-height 180ms ease',
                     }}
                   >
-                    <p className="px-4 pb-4 pt-1 text-sm text-[var(--tg-theme-hint-color)] leading-relaxed">
+                    <p className="pb-4 text-[13px] text-[var(--muted)] leading-relaxed">
                       {item.content}
                     </p>
                   </div>
@@ -161,11 +141,11 @@ export function SupportSheet({ isOpen, onClose }: SupportSheetProps) {
           </div>
 
           <button
-            onClick={handleAdminClick}
-            className="mt-6 w-full flex items-center justify-center gap-2 h-12 rounded-xl bg-[var(--tg-theme-button-color)] text-[var(--tg-theme-button-text-color)] text-base font-semibold"
+            onClick={() => window.Telegram?.WebApp?.openTelegramLink(ADMIN_URL)}
+            className="mt-5 w-full flex items-center justify-center gap-2 h-11 rounded-md bg-[var(--btn-bg)] text-[var(--btn-text)] text-[14px] font-semibold"
             aria-label="Написать администратору в Telegram"
           >
-            <MessageCircle size={18} aria-hidden="true" />
+            <MessageCircle size={16} aria-hidden="true" />
             Написать администратору
           </button>
         </div>

@@ -74,7 +74,7 @@ export default function App() {
   const { profile, config } = appState
 
   return (
-    <div className="min-h-dvh bg-[var(--tg-theme-secondary-bg-color)] flex flex-col">
+    <div className="min-h-dvh bg-[var(--bg)] flex flex-col">
       <Header name={profile.name} />
 
       <main className="flex-1 flex flex-col gap-6 py-6">

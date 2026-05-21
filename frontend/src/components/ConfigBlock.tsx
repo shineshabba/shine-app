@@ -9,8 +9,8 @@ interface ConfigBlockProps {
 export function ConfigBlock({ vlessUrl, onShowQr }: ConfigBlockProps) {
   const [copied, setCopied] = useState(false)
 
-  const truncatedUrl = vlessUrl.length > 43
-    ? vlessUrl.slice(0, 40) + '…'
+  const truncatedUrl = vlessUrl.length > 46
+    ? vlessUrl.slice(0, 43) + '…'
     : vlessUrl
 
   const handleCopy = async () => {
@@ -30,18 +30,17 @@ export function ConfigBlock({ vlessUrl, onShowQr }: ConfigBlockProps) {
 
   return (
     <div
-      className="mx-4 rounded-2xl p-4 bg-[var(--tg-theme-bg-color)]"
-      style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}
+      className="mx-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
       role="region"
       aria-label="Блок конфигурации"
     >
-      <h2 className="text-xl font-semibold text-[var(--tg-theme-text-color)] mb-3">
+      <p className="text-[11px] uppercase tracking-widest text-[var(--muted)] mb-3 font-medium">
         Конфигурация
-      </h2>
+      </p>
 
       <p
-        className="text-sm text-[var(--tg-theme-text-color)] font-mono break-all mb-4 select-all"
-        aria-label="Конфигурационная ссылка (сокращённая)"
+        className="text-[13px] text-[var(--muted)] font-mono break-all mb-4 select-all leading-relaxed"
+        aria-label="Конфигурационная ссылка"
       >
         {truncatedUrl}
       </p>
@@ -49,17 +48,18 @@ export function ConfigBlock({ vlessUrl, onShowQr }: ConfigBlockProps) {
       <div className="flex gap-2">
         <button
           onClick={handleCopy}
-          className="flex-1 flex items-center justify-center gap-2 min-h-[44px] rounded-[10px] bg-[var(--tg-theme-button-color)] text-[var(--tg-theme-button-text-color)] text-base font-semibold"
+          className="flex-1 flex items-center justify-center gap-2 h-10 rounded-md border border-[var(--border)] text-[13px] font-medium text-[var(--text)]"
+          style={{ background: copied ? 'var(--faint)' : 'transparent' }}
           aria-label={copied ? 'Скопировано' : 'Копировать конфигурацию'}
         >
           {copied ? (
             <>
-              <Check size={16} aria-hidden="true" />
-              Скопировано ✓
+              <Check size={14} aria-hidden="true" />
+              Скопировано
             </>
           ) : (
             <>
-              <Copy size={16} aria-hidden="true" />
+              <Copy size={14} aria-hidden="true" />
               Копировать
             </>
           )}
@@ -67,10 +67,11 @@ export function ConfigBlock({ vlessUrl, onShowQr }: ConfigBlockProps) {
 
         <button
           onClick={onShowQr}
-          className="flex-1 flex items-center justify-center gap-2 min-h-[44px] rounded-[10px] bg-[var(--tg-theme-button-color)] text-[var(--tg-theme-button-text-color)] text-base font-semibold"
+          className="flex-1 flex items-center justify-center gap-2 h-10 rounded-md border border-[var(--border)] text-[13px] font-medium text-[var(--text)]"
+          style={{ background: 'transparent' }}
           aria-label="Показать QR-код конфигурации"
         >
-          <QrCode size={16} aria-hidden="true" />
+          <QrCode size={14} aria-hidden="true" />
           QR-код
         </button>
       </div>
