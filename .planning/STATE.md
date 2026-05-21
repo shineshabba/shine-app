@@ -10,15 +10,15 @@
 
 - **Milestone**: v1 MVP
 - **Phase**: 02 — Frontend Dashboard React Mini App
-- **Plan**: 02-03 (next)
-- **Status**: In progress — Phase 02 Plan 02 complete
-- **Progress**: `[███░░░░░░░] Phase 02 active`
+- **Plan**: 02-05 (next)
+- **Status**: In progress — Phase 02 Plan 04 complete
+- **Progress**: `[████████░░] Phase 02 active`
 
 ## Performance Metrics
 
 - Phases completed: 1/3 (Phase 01 complete)
 - Requirements validated: 0/36 (v1)
-- Plans executed: 7 (01-01 through 01-05 complete, 02-01 and 02-02 complete)
+- Plans executed: 10 (01-01 through 01-05 complete, 02-01 through 02-04 complete)
 - Test pass rate: n/a
 
 ## Accumulated Context
@@ -38,7 +38,7 @@
 
 ### Open TODOs
 
-- Execute 02-03 (Dashboard screen — the main UI)
+- Execute 02-05 (Vercel deploy + production wiring)
 
 ### Blockers
 
@@ -46,9 +46,9 @@
 
 ## Session Continuity
 
-**Last session**: 2026-05-21 — Phase 02 Plan 02 executed: API client, TypeScript types, state screen components (LoadingScreen, ErrorScreen, UnregisteredScreen, ErrorBoundary). Commit: f7f9fb9.
+**Last session**: 2026-05-21 — Phase 02 Plan 04 executed: QrModal, SupportSheet, wired overlays in App.tsx. Commit: c8bbfca.
 
-**Next action**: Execute 02-03 (Dashboard screen).
+**Next action**: Execute 02-05 (Vercel deploy + production wiring).
 
 ---
 *Last updated: 2026-05-21*
