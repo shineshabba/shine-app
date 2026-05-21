@@ -1,0 +1,10 @@
+# Backend secrets — never commit
+backend/.env
+
+# Backend virtualenv
+backend/venv/
+backend/.venv/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

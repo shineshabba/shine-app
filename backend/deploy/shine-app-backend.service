@@ -1,0 +1,23 @@
+[Unit]
+Description=Shine App Backend (FastAPI)
+After=network.target
+# Independent of the bot — no dependency on vpn-bot.service
+
+[Service]
+User=shineapp
+# Before deploying, run on the VPS:
+#   adduser --system --no-create-home --group shineapp
+#   chown -R shineapp:shineapp /root/shine-app/backend/.env
+#   # Grant read-only access to the vpn-bot database:
+#   setfacl -m u:shineapp:r /root/vpn-bot/users.db
+WorkingDirectory=/root/shine-app/backend
+EnvironmentFile=/root/shine-app/backend/.env
+ExecStart=/root/shine-app/backend/venv/bin/uvicorn main:app --host 127.0.0.1 --port 8000 --workers 1
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=shine-app-backend
+
+[Install]
+WantedBy=multi-user.target
