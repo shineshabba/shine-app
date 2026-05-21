@@ -9,6 +9,7 @@ backend/.venv/
 frontend/dist/
 frontend/node_modules/
 frontend/package-lock.json
+frontend/tsconfig.app.tsbuildinfo
 
 # OS artifacts
 .DS_Store
