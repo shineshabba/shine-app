@@ -1,7 +1,7 @@
 import type { UserProfile, ConfigResponse } from '../types/api'
 import { ApiError, type ApiErrorCode } from '../types/api'
 
-const API_BASE = (import.meta.env.VITE_API_URL ?? 'https://api.shineee.space').trim()
+const API_BASE = (import.meta.env.VITE_API_URL ?? '').trim()
 
 /**
  * Получить initData из Telegram WebApp.
