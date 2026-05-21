@@ -36,7 +36,11 @@ app.add_middleware(SlowAPIMiddleware)
 # Use allow_origin_regex instead (see RESEARCH.md Pitfall 2).
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://app.shineee.space",
+    ],
     allow_origin_regex=r"^https://[a-zA-Z0-9][a-zA-Z0-9\-]*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["GET", "OPTIONS"],
