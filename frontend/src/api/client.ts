@@ -15,12 +15,24 @@ function getInitData(): string {
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const initData = getInitData()
 
+  const wa = window.Telegram?.WebApp
+  const debug = JSON.stringify({
+    hasTelegram: !!window.Telegram,
+    hasWebApp: !!wa,
+    initDataLen: initData.length,
+    version: wa?.version,
+    platform: wa?.platform,
+    hasUnsafeUser: !!wa?.initDataUnsafe?.user,
+    unsafeUserId: wa?.initDataUnsafe?.user?.id,
+  }).slice(0, 400)
+
   let response: Response
   try {
     response = await fetch(`${API_BASE}${path}`, {
       ...options,
       headers: {
         'X-Telegram-Init-Data': initData,
+        'X-Debug-Tg': debug,
         'Content-Type': 'application/json',
         ...options?.headers,
       },
