@@ -59,12 +59,18 @@
 
 **Success Criteria** (what must be TRUE):
   1. Frontend задеплоен на Vercel с авто-деплоем из git, доступен по публичному HTTPS-URL
-  2. Mini App зарегистрирован в BotFather и привязан к `@shine_connect_bot` с URL Vercel-фронта
+  2. Mini App зарегистрирован в BotFather и привязан к `@shine_connect_bot` с URL https://app.shineee.space
   3. В главном меню `@shine_connect_bot` есть кнопка «🚀 Открыть приложение» (`WebAppInfo`), которая открывает Mini App внутри Telegram
-  4. Старые кнопки «Мой конфиг» остаются в боте как fallback
+  4. Кнопка показывается всем юзерам без проверки статуса (per D-09: нет старых fallback кнопок)
   5. Реальный юзер из 19 существующих может открыть Mini App из бота, авторизоваться, увидеть свой статус и скопировать конфиг — полный сценарий работает на iOS и Android Telegram
 
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Подготовка кода: env var VITE_API_URL, CORS для app.shineee.space, GitHub push
+- [ ] 03-02-PLAN.md — Vercel deploy + DNS CNAME app.shineee.space
+- [ ] 03-03-PLAN.md — BotFather Menu Button + ReplyKeyboard WebApp кнопка в /start handler
+- [ ] 03-04-PLAN.md — E2E проверка: curl API + ручной тест с реальным Telegram юзером
 
 ## Progress
 
@@ -72,7 +78,7 @@
 |-------|----------------|--------|-----------|
 | 1. Backend Foundation on api.shineee.space | 0/0 | Not started | - |
 | 2. Frontend Dashboard (React Mini App) | 0/0 | Not started | - |
-| 3. Deployment + Bot Integration | 0/0 | Not started | - |
+| 3. Deployment + Bot Integration | 0/4 | Planned | - |
 
 ## Deferred to v2
 
